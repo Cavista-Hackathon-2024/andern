@@ -5,6 +5,7 @@ import json
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
+
 # Function to emit inference results
 def emit_inference_results(queue_name, result):
     # Declare a queue
@@ -24,6 +25,7 @@ def emit_inference_results(queue_name, result):
       )
     print("Inference result emitted:", inference_json)
 
+
 def emit_health_tips(queue_name, result):
     # Declare a queue
     channel.queue_declare(queue=queue_name, durable=True)
@@ -41,16 +43,6 @@ def emit_health_tips(queue_name, result):
         ),
       )
     print("Health tips emitted:", result_json)
-
-# Example inference result
-example_inference_result = {
-    'patient_id': '123456',
-    'diagnosis': 'Pneumonia',
-    'confidence_score': 0.85
-}
-
-# Emit example inference result
-emit_inference_results(example_inference_result)
 
 # Close connection
 connection.close()
