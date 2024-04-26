@@ -1,8 +1,12 @@
 from transformers import pipeline
 from typing import Dict, List
-from .broker import emit_inference_results
+from producer import emit_inference_results
+import pika
 
-QUEUE_NAME = 'inference'
+
+DATA_QUEUE = 'data'
+INFERENCE_QUEUE = 'inference'
+AMQ_URL = "amqps://msrktgpz:iMlpi5RZKbt7v2JyWjvRBb8fACRz9xhs@gull.rmq.cloudamqp.com/msrktgpz"
 
 def diagnosis(symptom: str, medic_history: List, patient_info: Dict) -> Dict:
     """
@@ -18,7 +22,7 @@ def diagnosis(symptom: str, medic_history: List, patient_info: Dict) -> Dict:
     result = pipe(symptom)
 
     #Emit message to broker
-    emit_inference_results(QUEUE_NAME, result)
+    emit_inference_results(INFERENCE_QUEUE, result)
     return result
 
 
@@ -35,7 +39,7 @@ def generate_prompt(symptom: str, medic_history: List, patient_info: Dict) -> st
 
 def consume_diagnosis():
     # Connect to RabbitMQ broker
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    connection = pika.BlockingConnection(pika.URLParameters(AMQ_URL))
     channel = connection.channel()
     # Callback function to handle incoming messages
     def callback(ch, method, properties, body):
@@ -46,7 +50,7 @@ def consume_diagnosis():
         # Perform inference with your diagnosis model
         inference_result = diagnosis(patient_data[symptom], patient_data["medic_history"], patient_data["patient_info"])
 
-    channel.basic_consume(queue=QUEUE_NAME, on_message_callback=callback, auto_ack=True)
+    channel.basic_consume(queue=DATA_QUEUE, on_message_callback=callback, auto_ack=True)
     channel.start_consuming()
   
 if __name__ == "__main__":

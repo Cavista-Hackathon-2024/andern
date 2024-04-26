@@ -2,8 +2,8 @@ import json
 import schedule
 import threading
 import time
-from .health_tips import get_random_health_tip
-from .diagnosis import consume_diagnosis
+from health_tips import get_random_health_tip
+from diagnosis import consume_diagnosis
 
 
 # Schedule the health tip generator to run every 3 hours
