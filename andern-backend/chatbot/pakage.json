@@ -1,0 +1,35 @@
+{
+    "name": "chatbot",
+    "version": "1.0.0",
+    "main": "index.js",
+    "directories": {
+      "test": "tests"
+    },
+    "scripts": {
+      "start:dev": "nodemon app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@google/generative-ai": "^0.3.1",
+      "amqplib": "^0.10.3",
+      "axios": "^1.6.1",
+      "body-parser": "^1.20.2",
+      "circular-json": "^0.5.9",
+      "cors": "^2.8.5",
+      "date-fns": "^2.30.0",
+      "dotenv": "^16.3.1",
+      "express": "^4.18.2",
+      "express-rate-limit": "^7.1.1",
+      "firebase": "^10.9.0",
+      "firebase-admin": "^12.0.0",
+      "helmet": "^7.0.0",
+      "joi": "^17.12.2",
+      "morgan": "^1.10.0"
+    },
+    "description": "## Chatbot",
+    "devDependencies": {
+      "nodemon": "^3.1.0"
+    }
+  }
