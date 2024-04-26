@@ -5,10 +5,9 @@ import userModel from "../models/user.model";
 import otpService from "../services/otp.service";
 import mailService from "../services/mail.service";
 import { UserSchema } from "../models/types/user";
+import { ExtReq } from "../utils/types";
+import { UserTypes } from "../utils/enums";
 
-interface ExtReq extends Request{
-    user: UserSchema
-}
 
 export const useAuth = async(req: Request, res: Response, next: NextFunction) =>{
     function sendUnauthenticated(message: string = "unauthenticated"){
@@ -29,4 +28,16 @@ export const useAuth = async(req: Request, res: Response, next: NextFunction) =>
     };
     (req as ExtReq).user = user
     next()
+}
+
+export const restrictRouteTo = function(role: UserTypes | UserTypes[]){
+return async(req: Request, res: Response, next: NextFunction)=>{
+    if(!role)return next()
+    if(Array.isArray(role)){
+        if(role.includes((req as ExtReq).user.type))return next()
+    }else{
+        if(role === (req as ExtReq).user.type)return next()
+    }
+return res.status(403).json({message: "you are not authorized "})
+}
 }

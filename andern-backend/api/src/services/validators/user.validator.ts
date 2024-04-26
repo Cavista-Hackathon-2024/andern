@@ -10,6 +10,8 @@ class UserValidator{
             type: Joi.string().required()
         }).validate(obj)
     }
+
+    
 }
 
 const userValidator = new UserValidator()
