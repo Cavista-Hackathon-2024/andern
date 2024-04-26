@@ -2,7 +2,11 @@
 export default {
   content: ["./src/**/*.{html,js,jsx}", "./src/*.{html,js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        pryBlue: "#2f76fe",
+      },
+    },
   },
   plugins: [],
 };
