@@ -9,6 +9,11 @@ import {
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Root from './components/Root.jsx';
+import DashboardRoot from './components/DashboardRoot.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import Diagnosis from './pages/Diagnosis.jsx';
+import Symptoms from './pages/Symptoms.jsx';
+import Drugs from './pages/Drugs.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +33,28 @@ const router = createBrowserRouter([
       //   path: "/login",
       //   element: <div>This is th login in page pppppppppp</div> ,
       // },
+    ]
+  },
+  {
+    path: "dashboard",
+    element: <DashboardRoot />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />
+      },
+      {
+        path: "dashboard/submitdiagnosis",
+        element: <Diagnosis />
+      },
+      {
+        path: "dashboard/symptoms",
+        element: <Symptoms />
+      },
+      {
+        path: "dashboard/drugs",
+        element: <Drugs />
+      },
     ]
   },
   {

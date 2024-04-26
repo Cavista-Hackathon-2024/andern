@@ -16,9 +16,9 @@ const NavBar = () => {
           {/* Menu */}
           <div className="flex gap-11  " >
             {
-              menuList.map(({path, name}) => {
+              menuList.map(({path, name}, idx) => {
                 return(
-                  <Link to={path} className="capitalize   " >{name}</Link>
+                  <Link to={path} className="capitalize   " key={idx} >{name}</Link>
                 )
               })
             }
