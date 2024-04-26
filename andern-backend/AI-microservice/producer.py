@@ -1,7 +1,8 @@
 import pika
 import json
+import os
 
-AMQ_URL = "amqps://msrktgpz:iMlpi5RZKbt7v2JyWjvRBb8fACRz9xhs@gull.rmq.cloudamqp.com/msrktgpz"
+AMQ_URL = os.environ["AMQ_URL"]
 
 # Connect to RabbitMQ broker
 connection = pika.BlockingConnection(pika.URLParameters(AMQ_URL))

@@ -2,11 +2,12 @@ from transformers import pipeline
 from typing import Dict, List
 from producer import emit_inference_results
 import pika
-
+import os
+import json
 
 DATA_QUEUE = 'data'
 INFERENCE_QUEUE = 'inference'
-AMQ_URL = "amqps://msrktgpz:iMlpi5RZKbt7v2JyWjvRBb8fACRz9xhs@gull.rmq.cloudamqp.com/msrktgpz"
+AMQ_URL = os.environ["AMQ_URL"]
 
 def diagnosis(symptom: str, medic_history: List, patient_info: Dict) -> Dict:
     """
@@ -14,7 +15,7 @@ def diagnosis(symptom: str, medic_history: List, patient_info: Dict) -> Dict:
     Use Symptom_to_Diagnosis model - a finetuned bert classification model
     Emit inference to message broker
 
-    Returns:
+    Return:
        Model inference
     """
     pipe = pipeline("text-classification", model="Zabihin/Symptom_to_Diagnosis")
