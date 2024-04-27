@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ppl from "../../../assets/onboarding/log in/young doctors standing together.png"
+import Nav from '../Nav';
 
 const Form = () => {
   const questions = [
     { label: " Your age", type: "text", placeholder: "0-99" },
-    { label: " Blood type", type: "number", placeholder: " e.g AA" },
+    { label: " Blood type", type: "text", placeholder: " e.g AA" },
     { label: "Blood group", type: "text", placeholder: "O negative" },
     { label: "Wieght", type: "number", placeholder: "" },
     { label: "Date of Birth", type: "date", placeholder: "25 january 1990" },
@@ -70,7 +71,8 @@ const Form = () => {
   };
 
   return (
-    <div className="flex relative flex-col  h-screen justify-center items-center gap-6  bg-gray-300">
+    <div className="flex relative flex-col  h-screen overflow-y-hidden  w-screen   items-center gap-6  bg-gray-300">
+      <Nav className="sticky"/>
     <div className=" relative w-full mb-8">
         <p className="text-4xl absolute left-[20rem] font-bold">
             Let Us Get To Know You

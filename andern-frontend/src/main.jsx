@@ -15,7 +15,8 @@ import DashboardRoot from './components/DashboardRoot.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Diagnosis from './pages/Diagnosis.jsx';
 import Symptoms from './pages/Symptoms.jsx';
-import Drugs from './pages/Drugs.jsx'; 
+import Drugs from './pages/Drugs.jsx';  
+import Login from './pages/registration/sign_in/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -58,18 +59,26 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/sign_up", // Corrected path
-    element: <SignUpForm />,
-  },
-  {
-    path: "/email-verification",
-    element: <Email_verification />,
-  },
-  {
-    path: "/Hos_form",
-    element: <Hos_form />,
-  },
+  
+      {
+      path: '/sign_up', 
+      element: <SignUpForm />,
+    },
+    {
+      path: '/email-verification',
+      element: <Email_verification/>,
+    },
+    {
+      path: '/Hos_form',
+      element: <Hos_form />,
+    },
+    {
+      path:"/login",
+      element:<Login/>
+    }
+  
+
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

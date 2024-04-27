@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import doc from '../../../assets/onboarding/log in/pngwing 7.png';
 import { NavLink } from 'react-router-dom';
+import Nav from '../Nav';
 
 const EmailVerification = () => {
   const [email, setEmail] = useState('');
@@ -19,8 +20,9 @@ const EmailVerification = () => {
   };
 
   return (
-    <div className="w-full h-full">
-      <div className="flex items-center justify-center gap-8">
+    <div className="w-full h-screen overflow-y-hidden   bg-gray-300">
+      <Nav className="sticky"/>
+      <div className="flex items-center justify-center mt-8 gap-8">
         <img src={doc} className='object-contain' alt="" />
         <div className='flex flex-col justify-between bg-white rounded-xl px-8   py-12  h-[80vh] w-[40%]' style={{border:"0.5px solid #b2b2b2"}}>
             <div className="flex flex-col gap-2 items-start">
