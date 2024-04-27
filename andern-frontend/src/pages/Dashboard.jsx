@@ -1,9 +1,11 @@
 import React from 'react'
+import TipComponent from '../components/TipComponent'
 
 const Dashboard = () => {
   return (
     <div>
-        dashboard
+        <h1 className=' text-4xl ' >Welcome 👋🏽</h1>
+        <TipComponent />
     </div>
   )
 }
