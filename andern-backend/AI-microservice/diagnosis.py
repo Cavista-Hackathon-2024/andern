@@ -3,11 +3,12 @@ from typing import Dict, List
 from producer import emit_inference_results
 import pika
 import json
+import os
 
 
 DATA_QUEUE = 'data'
 INFERENCE_QUEUE = 'inference'
-AMQ_URL = "amqps://msrktgpz:iMlpi5RZKbt7v2JyWjvRBb8fACRz9xhs@gull.rmq.cloudamqp.com/msrktgpz"
+AMQ_URL = os.environ["AMQ_URL"]
 
 def diagnosis(symptom: str, medical_history: List, patient_info: Dict) -> Dict:
     """
