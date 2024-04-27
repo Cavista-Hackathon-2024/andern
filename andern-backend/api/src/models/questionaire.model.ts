@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import { QuestionaireSchema } from "./types/questionaire"
 import { BMI, BloodGroup, Gender, Genotype } from "../utils/enums"
+import userModel from "./user.model"
 
 const questionaireSchema = new mongoose.Schema<QuestionaireSchema>({
     bmi: { type: String, required: true, enum: Object.values(BMI)},

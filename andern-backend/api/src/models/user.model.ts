@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema<UserSchema>({
             lng: {type: Number, required: true},
             lat: {type: Number, required: true}
         }
-    }
+    },
 
 }, {timestamps: true})
 

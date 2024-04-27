@@ -19,8 +19,13 @@ export interface Coordinate{
     lat: number
 }
 
+type CoordSchema = CoordSchema & Document
+
+
 export interface Address{
     state: string
     country: string
     city: string
 }
+
+export type addressSchema = Address & Document

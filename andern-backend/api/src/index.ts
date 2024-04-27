@@ -8,6 +8,7 @@ import {connectDB} from "./config/db"
 import authRouter from "./routes/auth.route"
 import userRouter from "./routes/user.route"
 import questionaireRouter from "./routes/questionaire.route"
+import pharmacyRouter from "./routes/pharmacy.route"
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use(express.json())
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/questionaires', questionaireRouter)
+app.use("/api/v1/pharmacies", pharmacyRouter)
 
 async function start(){
     const server = http.createServer(app)
