@@ -69,9 +69,9 @@ const Form = () => {
           <strong>Warning!</strong> Please answer all questions before saving.
         </div>
       )}
-        <div className="grid grid-cols-2 items-center gap-4 mb-4">
+        <div className="grid grid-cols-2 items-center  mb-4">
             {questions.slice((currentPage - 1) * 10, currentPage * 10).map((question, index) => (
-            <div key={index} className="flex justify-between">
+            <div key={index} className="flex justify-around">
                 <div>
                 <label htmlFor={`question${index + 1}`} className="block text-sm font-medium text-gray-700">{`${question.label}`}</label>
                 <input
@@ -80,7 +80,7 @@ const Form = () => {
                     value={answers[index + (currentPage - 1) * 10]}
                     onChange={e => handleChange(index + (currentPage - 1) * 10, e.target.value)}
                     placeholder={question.placeholder}
-                    className="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm"
+                    className="mt-1 p-2 border border-gray-300 rounded-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm"
                 />
                 </div>
                 {index % 2 === 0 && <div></div>}
