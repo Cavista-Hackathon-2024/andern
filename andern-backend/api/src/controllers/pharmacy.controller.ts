@@ -9,7 +9,6 @@ export const createPharmacy = async(req: Request, res: Response)=>{
     const validateRes = pharmacyValidator.validateCreatePharmacyPayload(req.body)
     if(validateRes.error)return res.status(400).json({message: validateRes.error.message})
         const pharmacy = await pharmacyService.create({...req.body, licenseVerified: true, userId: user._id.toString()})
-
     return res.status(201).json(pharmacy)
 }
 
@@ -44,3 +43,4 @@ export const updatePharmacy = async(req: Request, res: Response)=>{
     const pharmacy = await pharmacyService.update(id, req.body)
     return res.status(200).json(pharmacy)
 }
+

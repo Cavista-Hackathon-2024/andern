@@ -9,6 +9,10 @@ import authRouter from "./routes/auth.route"
 import userRouter from "./routes/user.route"
 import questionaireRouter from "./routes/questionaire.route"
 import pharmacyRouter from "./routes/pharmacy.route"
+import { useQueue } from "./libs/useQueue";
+import { channels } from "./utils/enums";
+import getAIDiag from "./helpers/get_ai_diag";
+import handleInference from "./helpers/handle_ai_inference";
 
 const app = express()
 
@@ -18,6 +22,9 @@ const limiter = rateLimit({
 	standardHeaders: 'draft-7', 
 	legacyHeaders: false, 
 })
+
+useQueue(channels.GET_AI_DIAG, getAIDiag)
+useQueue(channels.INFERENCE, handleInference)
 
 app.use(limiter)
 app.use(helmet())

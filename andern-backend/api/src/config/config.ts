@@ -25,5 +25,6 @@ export const services = {
             user: process.env.MAIL_USER!
         },
         address: process.env.MAIL_ADDRESS!
-    }
+    },
+    amqp: {uri: process.env.AMQP_URI || "amqp://localhost"}
 }
