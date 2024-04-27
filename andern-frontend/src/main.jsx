@@ -1,19 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom'; // Change import statement
+import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Root from './components/Root.jsx';
+import 'react-toastify/dist/ReactToastify.css'; 
+import Root from './components/Root.jsx'; 
+import SignUpForm from './pages/registration/sign_up/Sign_up.jsx';
+import Email_verification from './pages/registration/sign_up/Email_verification.jsx';
+import Hos_form from './pages/registration/sign_up/Hos_form.jsx'; 
 import DashboardRoot from './components/DashboardRoot.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Diagnosis from './pages/Diagnosis.jsx';
 import Symptoms from './pages/Symptoms.jsx';
-import Drugs from './pages/Drugs.jsx';
+import Drugs from './pages/Drugs.jsx';  
+import Login from './pages/registration/sign_in/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,46 +24,61 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        // path: "/",
         index: true,
-        element: <div>this is home</div> ,
+        element: <div>this is home</div>,
       },
       {
         path: "/contact",
-        element: <div>This is contact us page</div> ,
+        element: <div></div>,
       },
       // {
       //   path: "/login",
       //   element: <div>This is th login in page pppppppppp</div> ,
       // },
-    ]
+    ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard", // Corrected path
     element: <DashboardRoot />,
     children: [
       {
         index: true,
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
-        path: "dashboard/submitdiagnosis",
-        element: <Diagnosis />
+        path: "submitdiagnosis",
+        element: <Diagnosis />,
       },
       {
-        path: "dashboard/symptoms",
-        element: <Symptoms />
+        path: "symptoms",
+        element: <Symptoms />,
       },
       {
-        path: "dashboard/drugs",
-        element: <Drugs />
+        path: "drugs",
+        element: <Drugs />,
       },
-    ]
+    ],
   },
-  {
-    path: "ddd",
-    element: <div>hello you are on DDD</div>
-  },
+  
+      {
+      path: '/sign_up', 
+      element: <SignUpForm />,
+    },
+    {
+      path: '/email-verification',
+      element: <Email_verification/>,
+    },
+    {
+      path: '/Hos_form',
+      element: <Hos_form />,
+    },
+    {
+      path:"/login",
+      element:<Login/>
+    }
+  
+
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -69,4 +87,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ToastContainer />
     {/* <App /> */}
   </React.StrictMode>,
-)
+);
