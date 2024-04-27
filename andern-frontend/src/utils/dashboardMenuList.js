@@ -4,12 +4,12 @@ import { FaPills } from "react-icons/fa6";
 
 export const dashboardMenuList = [
   {
-    name: "Submit Prescription",
+    name: "Get prescription",
     // icon: <LuStethoscope />,
     path: "dashboard/submitdiagnosis",
   },
   {
-    name: "Symptoms",
+    name: "Get Diagnosis",
     // icon: <FaPerson />,
     path: "dashboard/symptoms",
   },

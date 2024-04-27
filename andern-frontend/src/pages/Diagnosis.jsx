@@ -3,7 +3,7 @@ import React from 'react'
 const Diagnosis = () => {
   return (
     <div>
-        <h1>Wanna get drugs? submit your prescriptions</h1>
+        <h1>Need drugs? submit your prescriptions</h1>
         <form className=' shadow-2xl outline outline-1 outline-gray-600 p-4 my-3 rounded-2xl ' >
           <div className='flex justify-stretch my-4 gap-4  '>
               <div className='flex items-center gap-2 ' >

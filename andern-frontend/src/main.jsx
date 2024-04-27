@@ -20,28 +20,11 @@ import Login from './pages/registration/sign_in/Login.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        index: true,
-        element: <div>this is home</div>,
-      },
-      {
-        path: "/contact",
-        element: <div></div>,
-      },
-      // {
-      //   path: "/login",
-      //   element: <div>This is th login in page pppppppppp</div> ,
-      // },
-    ],
-  },
-  {
-    path: "/dashboard", // Corrected path
+    path: "/", // Corrected path
     element: <DashboardRoot />,
     children: [
       {
+        path: "/dashboard",
         index: true,
         element: <Dashboard />,
       },

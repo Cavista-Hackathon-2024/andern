@@ -2,7 +2,7 @@ import React from 'react'
 
 const Symptoms = () => {
   
-  const questions = ['Are you okay?', "What is wrong with you?", "Are you currently taking any medications or supplements?"]
+  const questions = ["Describe your symptoms"]
 
 
 
@@ -21,6 +21,10 @@ const Symptoms = () => {
             })
           }
         </div>
+   
+          <button classname="bg-blue-500 text-white px-4 py-2 rounded-l-lg"> Submit to pharmacy</button>
+          <button  classname="bg-blue-500 text-white px-4 py-2 rounded-l-lg">Get AI insights</button>
+
     </div>
   )
 }
