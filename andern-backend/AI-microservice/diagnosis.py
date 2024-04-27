@@ -34,7 +34,8 @@ def generate_prompt(symptom: str, medical_history: List, patient_info: Dict) -> 
     Return:
         Prompt to use by model in diagnosis function
     """
-    prompt = f"{symptom}, I am {patient_info['age']}, years old, with blood group of {patient_info['bloodGroup']}, my blood type is {patient_info['bloodType']} "
+    formatted_medic_history = ', '.join(medical_history)
+    prompt = f"{symptom}, I am {patient_info['age']}, years old, with blood type of {patient_info['bloodType']}, genotype of {patient_info['genoType']}. Previously suffered from {formatted_medic_history}"
     return prompt
 
 
@@ -59,8 +60,8 @@ if __name__ == "__main__":
     medical_history = ["migraine", "malaria"]
     patient_info = {
         "age": 14,
-        "bloodGroup": "A",
-        "bloodType": "O positive"
+        "bloodType": "O positive",
+        "genoType": "A"
     }
     result = diagnosis(symptom, medical_history, patient_info)
     print(result)

@@ -3,13 +3,14 @@ import json
 
 AMQ_URL = "amqps://msrktgpz:iMlpi5RZKbt7v2JyWjvRBb8fACRz9xhs@gull.rmq.cloudamqp.com/msrktgpz"
 
-# Connect to RabbitMQ broker
-connection = pika.BlockingConnection(pika.URLParameters(AMQ_URL))
-channel = connection.channel()
-
 
 # Function to emit inference results
 def emit_inference_results(queue_name, result):
+    
+    # Connect to RabbitMQ broker
+    connection = pika.BlockingConnection(pika.URLParameters(AMQ_URL))
+    channel = connection.channel()
+
     # Declare a queue
     channel.queue_declare(queue=queue_name, durable=True)
 
@@ -25,10 +26,15 @@ def emit_inference_results(queue_name, result):
           delivery_mode=2,  # make message persistent
         ),
     )
+    connection.close()
     print("Inference result emitted:", inference_json)
 
 
 def emit_health_tips(queue_name, result):
+    # Connect to RabbitMQ broker
+    connection = pika.BlockingConnection(pika.URLParameters(AMQ_URL))
+    channel = connection.channel()
+
     # Declare a queue
     channel.queue_declare(queue=queue_name, durable=True)
     # Convert result to JSON format
@@ -44,7 +50,7 @@ def emit_health_tips(queue_name, result):
         delivery_mode=2,  # make message persistent
       ),
     )
+    connection.close()
     print("Health tips emitted:", result_json)
 
 # Close connection
-connection.close()
