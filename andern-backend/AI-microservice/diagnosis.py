@@ -50,7 +50,7 @@ def consume_diagnosis():
         print("Received patient data:", patient_data)
 
         # Perform inference with your diagnosis model
-        diagnosis(patient_data["symptom"], patient_data["medical_history"], patient_data["patient_info"])
+        diagnosis(patient_data["symptom"], patient_data["medicalHistory"], patient_data["patientInfo"])
 
     channel.basic_consume(queue=DATA_QUEUE, on_message_callback=callback, auto_ack=True)
     channel.start_consuming()
