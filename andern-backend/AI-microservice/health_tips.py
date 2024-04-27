@@ -3,10 +3,12 @@ import google.generativeai as genai
 import os
 from producer import emit_health_tips
 
-#genai.configure(api_key=os.environ["API_KEY"])
+genai.configure(api_key=os.environ["API_KEY"])
 
-from google.colab import userdata
-genai.configure(api_key=userdata.get('API_KEY'))
+QUEUE_NAME = "health-tip"
+
+#from google.colab import userdata
+#genai.configure(api_key=userdata.get('API_KEY'))
 
 def get_random_health_tip():
     """Fetches random general health tips using Gemini and returns a formatted string.

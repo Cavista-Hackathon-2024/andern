@@ -2,13 +2,14 @@ from transformers import pipeline
 from typing import Dict, List
 from producer import emit_inference_results
 import pika
+import json
 
 
 DATA_QUEUE = 'data'
 INFERENCE_QUEUE = 'inference'
 AMQ_URL = "amqps://msrktgpz:iMlpi5RZKbt7v2JyWjvRBb8fACRz9xhs@gull.rmq.cloudamqp.com/msrktgpz"
 
-def diagnosis(symptom: str, medic_history: List, patient_info: Dict) -> Dict:
+def diagnosis(symptom: str, medical_history: List, patient_info: Dict) -> Dict:
     """
     Diagnosis disease from symptoms
     Use Symptom_to_Diagnosis model - a finetuned bert classification model
@@ -18,15 +19,15 @@ def diagnosis(symptom: str, medic_history: List, patient_info: Dict) -> Dict:
        Model inference
     """
     pipe = pipeline("text-classification", model="Zabihin/Symptom_to_Diagnosis")
-    generated_symptom =  generate_prompt(symptom, medic_history, patient_info)
-    result = pipe(symptom)
+    generated_symptom =  generate_prompt(symptom, medical_history, patient_info)
+    result = pipe(generated_symptom)
 
     #Emit message to broker
     emit_inference_results(INFERENCE_QUEUE, result)
     return result
 
 
-def generate_prompt(symptom: str, medic_history: List, patient_info: Dict) -> str:
+def generate_prompt(symptom: str, medical_history: List, patient_info: Dict) -> str:
     """
     Construct prompt using patient information and medical history
 
@@ -48,18 +49,18 @@ def consume_diagnosis():
         print("Received patient data:", patient_data)
 
         # Perform inference with your diagnosis model
-        inference_result = diagnosis(patient_data[symptom], patient_data["medic_history"], patient_data["patient_info"])
+        diagnosis(patient_data["symptom"], patient_data["medical_history"], patient_data["patient_info"])
 
     channel.basic_consume(queue=DATA_QUEUE, on_message_callback=callback, auto_ack=True)
     channel.start_consuming()
   
 if __name__ == "__main__":
     symptom = "Having severe headache and feel pains in my body"
-    medic_history = ["migraine", "malaria"]
+    medical_history = ["migraine", "malaria"]
     patient_info = {
         "age": 14,
         "bloodGroup": "A",
         "bloodType": "O positive"
     }
-    result = diagnosis(symptom, medic_history, patient_info)
+    result = diagnosis(symptom, medical_history, patient_info)
     print(result)
